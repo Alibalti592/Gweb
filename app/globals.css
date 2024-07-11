@@ -1,4 +1,42 @@
+/* styles/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+    .bg-background {
+        @apply bg-gray-100;
+        /* Replace with the actual background color you want */
+    }
+
+    .text-heading {
+        @apply text-red-500;
+        /* Replace with the actual color you want for h1 */
+    }
+
+    .bg-button {
+        @apply bg-blue-500;
+        /* Replace with the actual button background color */
+    }
+
+    .bg-button-hover {
+        @apply bg-blue-700;
+        /* Replace with the actual button hover color */
+    }
+
+    .flip-rtl {
+        transform: scaleX(-1);
+    }
+}
+
+body {
+    @apply bg-background;
+}
+
+h1 {
+    @apply text-heading;
+}
+
+.btn-custom {
+    @apply bg-button text-white font-bold py-2 px-4 rounded hover:bg-button-hover;
+}
