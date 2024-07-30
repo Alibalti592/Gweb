@@ -1,24 +1,27 @@
 "use client";
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import google from "../../public/google.svg";
-//import "../../../../app/globals.css"; // Import the CSS file
-import { signup } from "../api/api";
-const RegisterPage = ({ params }) => {
+import { signup } from "../api/api"; // Adjust the import path as needed
+
+const RegisterPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const data = await signup({ email, password });
+      await signup({ email, password });
       console.log("Signup successful!");
+      router.push("/dashboard");
     } catch (error) {
       setMessage(error.message);
     }
   };
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-16 px-8 bg-gray-100">
       <h1 className="pb-8 text-5xl text-[#2977c9] font-light">

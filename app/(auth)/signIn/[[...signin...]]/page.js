@@ -1,6 +1,8 @@
 "use client";
 import React from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+
 import google from "../../../../public/google.svg";
 import "../../../../app/globals.css";
 import { login } from "@/app/api/api";
@@ -9,6 +11,7 @@ const SignInPage = ({ params }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,6 +19,7 @@ const SignInPage = ({ params }) => {
       const data = await login({ email, password });
       setMessage("Login successful!");
       console.log("Login successful!");
+      router.push("/dashboard");
     } catch (error) {
       setMessage(error.message);
       console.log("login non successful");
