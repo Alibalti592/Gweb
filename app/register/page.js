@@ -1,11 +1,11 @@
 "use client";
 import React from "react";
-import Image from "next/image";
-import google from "../../../../public/google.svg";
-import "../../../../app/globals.css";
-import { login } from "@/app/api/api";
 import { useState } from "react";
-const SignInPage = ({ params }) => {
+import Image from "next/image";
+import google from "../../public/google.svg";
+//import "../../../../app/globals.css"; // Import the CSS file
+import { signup } from "../api/api";
+const RegisterPage = ({ params }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -13,19 +13,34 @@ const SignInPage = ({ params }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const data = await login({ email, password });
-      setMessage("Login successful!");
-      console.log("Login successful!");
+      const data = await signup({ email, password });
+      console.log("Signup successful!");
     } catch (error) {
       setMessage(error.message);
-      console.log("login non successful");
     }
   };
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-16 px-8 bg-gray-100">
-      {/*<h1 className="pb-8 text-5xl  text-[#2977c9] font-light">Se connecter</h1>*/}
+      <h1 className="pb-8 text-5xl text-[#2977c9] font-light">
+        Créer un compte
+      </h1>
       <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-md">
         <form onSubmit={handleSubmit} className="flex flex-col space-y-6">
+          <div>
+            <label
+              htmlFor="name"
+              className="block text-lg font-medium text-gray-700"
+            >
+              Nom
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              className="mt-2 p-3 border border-gray-300 rounded-md w-full"
+              required
+            />
+          </div>
           <div>
             <label
               htmlFor="email"
@@ -61,11 +76,11 @@ const SignInPage = ({ params }) => {
             type="submit"
             className="h-12 bg-blue-600 text-white rounded-md shadow-md transition duration-200 hover:bg-blue-700"
           >
-            Se connecter
+            Créer un compte
           </button>
           <div className="relative flex py-5 items-center">
             <div className="flex-grow border-t border-gray-300"></div>
-            <span className="flex-shrink mx-4 text-gray-500">ou </span>
+            <span className="flex-shrink mx-4 text-gray-500">ou</span>
             <div className="flex-grow border-t border-gray-300"></div>
           </div>
           <button
@@ -81,4 +96,4 @@ const SignInPage = ({ params }) => {
   );
 };
 
-export default SignInPage;
+export default RegisterPage;

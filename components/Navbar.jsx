@@ -17,7 +17,7 @@ const Navbar = () => {
 
         <div className=" mx-4 px-4">
           <button className=" btn btn-ghost">
-            <a>Créer un compte</a>
+            <Link href={"/register"}>Créer un compte</Link>
           </button>
           <button className="btn-neutral border-2  rounded-xl p-2">
             <Link href={"/signIn"}>Se connecter</Link>
